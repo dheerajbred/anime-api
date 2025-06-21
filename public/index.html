@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
-    <title>Anime Api</title>
+    <title>Anime API</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -16,116 +16,163 @@
         box-sizing: border-box;
       }
 
-      body,
-      html {
-        height: 100%;
-        width: 100%;
-        max-height: 100vh;
-        max-width: 100vw;
-        background-color: #1e1e1e;
-        color: #ce9178;
+      body {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        font-family: 'Arial', sans-serif;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
       }
 
       .container {
-        height: 100%;
-        width: 100%;
-        display: grid;
-        grid-template-rows: auto 1fr;
-        grid-template-columns: 1fr;
-        justify-content: space-between;
-        align-items: center;
+        text-align: center;
         position: relative;
+        z-index: 2;
       }
 
-      .image-container {
+      .title {
+        color: white;
+        font-size: 3rem;
+        font-weight: bold;
+        margin-bottom: 2rem;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        animation: fadeInUp 1s ease-out;
+      }
+
+      .gif-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .gif-item {
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        animation: fadeInUp 1s ease-out;
+      }
+
+      .gif-item:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      }
+
+      .gif-item img {
         width: 100%;
-        display: flex;
-        justify-content: space-between;
-        background-size: cover;
-        position: relative;
+        height: 200px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .floating-gifs {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
         z-index: 1;
       }
 
-      h1 {
-        font-size: 2rem;
-        text-align: center;
-        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-          sans-serif;
-        z-index: 2;
-      }
-
-      #gif,
-      #mirrored-gif {
-        height: 300px;
-        width: 300px;
-      }
-
-      #mirrored-gif {
-        transform: scaleX(-1);
-      }
-
-      #pic {
-        width: 250px;
-        height: 250px;
-        border-radius: 50%;
-        object-position: center;
-        object-fit: cover;
-      }
-
-      .profile {
+      .floating-gif {
         position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        z-index: 2;
+        width: 80px;
+        height: 80px;
+        opacity: 0.3;
+        animation: float 6s ease-in-out infinite;
       }
-      .github {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        align-items: center;
+
+      .floating-gif:nth-child(1) {
+        top: 10%;
+        left: 10%;
+        animation-delay: 0s;
       }
-      .fa-github {
-        color: grey;
+
+      .floating-gif:nth-child(2) {
+        top: 20%;
+        right: 15%;
+        animation-delay: 2s;
       }
-      a {
-        font-size: 1.3rem;
-        color: #7cdcfe;
+
+      .floating-gif:nth-child(3) {
+        bottom: 20%;
+        left: 20%;
+        animation-delay: 4s;
       }
-      @media (max-width: 700px) {
-        .image-container {
-          display: none;
+
+      .floating-gif:nth-child(4) {
+        bottom: 30%;
+        right: 10%;
+        animation-delay: 1s;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes float {
+        0%, 100% {
+          transform: translateY(0px) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-20px) rotate(180deg);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .title {
+          font-size: 2rem;
+        }
+        
+        .gif-grid {
+          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+          gap: 1rem;
+          padding: 0 1rem;
+        }
+        
+        .floating-gif {
+          width: 60px;
+          height: 60px;
         }
       }
     </style>
   </head>
   <body>
+    <div class="floating-gifs">
+      <img src="https://media.tenor.com/1G8D0kk1bMQAAAAi/anime-hello.gif" alt="" class="floating-gif">
+      <img src="https://media.tenor.com/1G8D0kk1bMQAAAAi/anime-hello.gif" alt="" class="floating-gif">
+      <img src="https://media.tenor.com/1G8D0kk1bMQAAAAi/anime-hello.gif" alt="" class="floating-gif">
+      <img src="https://media.tenor.com/1G8D0kk1bMQAAAAi/anime-hello.gif" alt="" class="floating-gif">
+    </div>
+
     <div class="container">
-      <h1>Welcome to API 🎉</h1>
-      <div class="profile">
-        <img id="pic" src="image.webp" alt="" />
-        <div class="github">
-          <i class="fa fa-github" style="font-size: 36px"></i>
-          <a href="https://github.com/itzzzme/anime-api" target="_blank"
-            >Click here to refer docs</a
-          >
+      <h1 class="title">🎌 Anime API</h1>
+      
+      <div class="gif-grid">
+        <div class="gif-item">
+          <img src="https://media.tenor.com/1G8D0kk1bMQAAAAi/anime-hello.gif" alt="Anime Hello">
         </div>
-      </div>
-      <div class="image-container">
-        <img
-          id="gif"
-          src="https://media.tenor.com/1G8D0kk1bMQAAAAi/anime-hello.gif"
-          alt=""
-        />
-        <img
-          id="mirrored-gif"
-          src="https://media.tenor.com/1G8D0kk1bMQAAAAi/anime-hello.gif"
-          alt=""
-        />
+        <div class="gif-item">
+          <img src="https://media.tenor.com/1G8D0kk1bMQAAAAi/anime-hello.gif" alt="Anime Hello">
+        </div>
+        <div class="gif-item">
+          <img src="https://media.tenor.com/1G8D0kk1bMQAAAAi/anime-hello.gif" alt="Anime Hello">
+        </div>
+        <div class="gif-item">
+          <img src="https://media.tenor.com/1G8D0kk1bMQAAAAi/anime-hello.gif" alt="Anime Hello">
+        </div>
       </div>
     </div>
   </body>

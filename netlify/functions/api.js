@@ -13,9 +13,8 @@ import * as randomIdController from "../../src/controllers/randomId.controller.j
 import * as producerController from "../../src/controllers/producer.controller.js";
 import * as characterListController from "../../src/controllers/voiceactor.controller.js";
 import getVoiceActors from "../../src/controllers/actors.controller.js";
-import getCharacter from "../../src/controllers/characters.controller.js";
-import * as filterController from "../../src/controllers/filter.controller.js";
 import getTopSearch from "../../src/controllers/topsearch.controller.js";
+import getCharacter from "../../src/controllers/characters.controller.js";
 import { routeTypes } from "../../src/routes/category.route.js";
 
 function ok(results) {

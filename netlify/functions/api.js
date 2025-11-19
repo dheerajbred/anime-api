@@ -80,7 +80,9 @@ export async function handler(event) {
     }
 
     if (path.startsWith("/api/servers/")) {
+      const ep = decodeURIComponent(path.replace("/api/servers/", ""));
       const req = makeReq(event);
+      req.query = { ...(req.query || {}), ep };
       const data = await serversController.getServers(req, {});
       return ok(data);
     }

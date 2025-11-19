@@ -1,5 +1,9 @@
 [build]
+  command = "npm ci"
   functions = "netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "18"
 
 [[redirects]]
   from = "/api/*"

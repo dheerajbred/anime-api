@@ -1,3 +1,4 @@
+import "./polyfills/file.js";
 import * as homeInfoController from "../../src/controllers/homeInfo.controller.js";
 import * as categoryController from "../../src/controllers/category.controller.js";
 import * as topTenController from "../../src/controllers/topten.controller.js";

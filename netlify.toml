@@ -1,5 +1,5 @@
 [build]
-  command = "npm install"
+  command = "npm install && npm --prefix netlify/functions install"
   functions = "netlify/functions"
 
 [build.environment]

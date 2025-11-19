@@ -6,7 +6,8 @@
   NODE_VERSION = "18"
 
 [functions]
-  node_bundler = "esbuild"
+  node_bundler = "zisi"
+  included_files = ["src/**"]
 
 [[redirects]]
   from = "/api/*"

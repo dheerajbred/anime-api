@@ -25,7 +25,7 @@ function makeReq(event, params = {}) {
   };
 }
 
-export async function handler(event) {
+exports.handler = async function(event) {
   try {
     const path = event.path;
     const method = event.httpMethod;

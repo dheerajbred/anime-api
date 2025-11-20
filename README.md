@@ -4,6 +4,8 @@
 ![GitHub forks](https://img.shields.io/github/forks/itzzzme/anime-api?logo=github)
 ![Static Badge](https://img.shields.io/badge/version-1.0.0-blue)
 
+
+
 </div>
 
 ## <span>Disclaimer</span>

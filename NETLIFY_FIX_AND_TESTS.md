@@ -77,9 +77,10 @@ export async function handler(event) {
     }
 
     if (path.startsWith("/api/servers/")) {
-      const ep = decodeURIComponent(path.replace("/api/servers/", ""));
+      const epPath = decodeURIComponent(path.replace("/api/servers/", ""));
       const req = makeReq(event);
-      req.query = { ...(req.query || {}), ep };
+      const existingEp = (req.query || {}).ep;
+      req.query = { ...(req.query || {}), ep: existingEp ?? epPath };
       return ok(await serversController.getServers(req, {}));
     }
 
@@ -238,7 +239,7 @@ curl -sS "$BASE/api/schedule?date=$date" | jq .success
 - `/episodes/{id}` — `lib/colors.dart:811`
 - `/recently-updated` — `lib/colors.dart:1534`
 - `/info?id={id}` — `lib/imagecollections.dart:611`
-- `/servers/{episodeId}` — `lib/allin1videopage1.dart:358` (path style supported; also `?ep=` query style)
+- `/servers/{episodeId}` — `lib/allin1videopage1.dart:358` (path style supported; if a `?ep=` query is present, it takes precedence over the path value)
 - `/api/stream` — `lib/allin1videopage1.dart:1649` (pass `id` containing `ep=<id>`)
 - `/schedule?date={YYYY-MM-DD}` — `lib/apischedule.dart:76`
 - `/anime/{id}` (non-API page; derived from base host) — `lib/apischedule.dart:516`
